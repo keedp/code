@@ -1,0 +1,17 @@
+h2{
+    background-color: #cc0808;
+    color: #fde367;
+    font-size: 28px;
+    text-align: center;
+}
+p{
+    font-size: 20px;
+    color: #000000;
+    line-height: 1.5;
+    text-align: center;
+}
+span{color: #cc0808;}
+img{
+    padding: 8px;
+    border: 1px solid #cc0808;
+}
