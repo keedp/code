@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鹈鹕骑自行车 · 动画合集</title>
+<style>
+  :root{
+    --ink:#22322f;
+    --muted:#5f7a72;
+    --cream:#fbf3e2;
+    --paper:#f4ead6;
+    --coral:#db654f;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{ margin:0; }
+
+  body{
+    min-height:100vh;
+    padding:clamp(28px,5vw,72px) clamp(20px,5vw,72px) clamp(48px,7vw,96px);
+    background:
+      radial-gradient(90% 60% at 12% 0%, rgba(255,246,222,.85), transparent 62%),
+      linear-gradient(180deg,#d9ece3 0%,#eee6cf 58%,#e6d8ba 100%);
+    color:var(--ink);
+    font-family:"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .kicker{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:0 0 14px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.26em;
+    color:#4d6b60;
+    text-transform:uppercase;
+  }
+
+  .kicker::before{
+    content:"";
+    width:34px;
+    height:1.5px;
+    border-radius:2px;
+    background:var(--coral);
+  }
+
+  h1{
+    margin:0;
+    font-family:"Bodoni 72","Didot","Songti SC","STSong","Times New Roman",serif;
+    font-size:clamp(30px,4.6vw,52px);
+    font-weight:600;
+    line-height:1.08;
+    letter-spacing:.05em;
+    color:#173c39;
+  }
+
+  .lede{
+    margin:14px 0 0;
+    max-width:560px;
+    font-size:14px;
+    line-height:1.85;
+    letter-spacing:.02em;
+    color:var(--muted);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:clamp(18px,2.6vw,30px);
+    margin-top:clamp(28px,4vw,46px);
+  }
+
+  .card{
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    border-radius:16px;
+    background:var(--cream);
+    text-decoration:none;
+    color:inherit;
+    box-shadow:0 16px 40px rgba(34,58,48,.16), 0 0 0 1px rgba(34,58,48,.08);
+    transition:transform .24s ease, box-shadow .24s ease;
+  }
+
+  .card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 24px 52px rgba(34,58,48,.22), 0 0 0 1px rgba(34,58,48,.12);
+  }
+
+  .card:focus-visible{
+    outline:2.5px solid var(--coral);
+    outline-offset:4px;
+  }
+
+  .thumb{
+    display:block;
+    width:100%;
+    aspect-ratio:16 / 10;
+    object-fit:cover;
+    object-position:center 74%;
+    background:#cbe7de;
+    border-bottom:1px solid rgba(34,58,48,.1);
+  }
+
+  .card-body{
+    padding:18px 20px 22px;
+  }
+
+  .card h2{
+    margin:0;
+    font-family:"Songti SC","STSong","Times New Roman",serif;
+    font-size:21px;
+    font-weight:600;
+    letter-spacing:.05em;
+    color:#173c39;
+  }
+
+  .card p{
+    margin:8px 0 0;
+    font-size:12.5px;
+    line-height:1.75;
+    color:var(--muted);
+  }
+
+  .tag{
+    display:inline-block;
+    margin-top:14px;
+    padding:5px 11px;
+    border-radius:999px;
+    background:rgba(219,101,79,.12);
+    color:#b04a39;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.1em;
+  }
+
+  footer{
+    margin-top:clamp(30px,4vw,52px);
+    padding-top:20px;
+    border-top:1px solid rgba(34,58,48,.14);
+    font-size:12px;
+    line-height:1.9;
+    color:#6c857c;
+  }
+
+  code{
+    padding:1px 6px;
+    border-radius:5px;
+    background:rgba(34,58,48,.08);
+    font-size:.92em;
+    font-family:Consolas,"SFMono-Regular",monospace;
+  }
+</style>
+</head>
+<body>
+  <p class="kicker">Pelican Rides · Collection</p>
+  <h1>鹈鹕骑自行车</h1>
+  <p class="lede">三个独立版本，都是单文件 HTML，内联 SVG 手绘 + CSS/JS 动画，不依赖任何外部资源。点开任意一张卡片即可播放；按空格可以暂停。</p>
+
+  <div class="grid">
+    <a class="card" href="pelican-bicycle.html">
+      <img class="thumb" src="pelican-bicycle-preview.png" alt="鹈鹕的海岸线：白天海岸骑行画面">
+      <div class="card-body">
+        <h2>鹈鹕的海岸线</h2>
+        <p>白天的海岸公路，薄荷色天空与红白灯塔。车轮、踏板、围巾随风，最清爽的一版。</p>
+        <span class="tag">DAYLIGHT</span>
+      </div>
+    </a>
+
+    <a class="card" href="pelican-bicycle-motion.html">
+      <img class="thumb" src="pelican-bicycle-motion-preview.png" alt="追着落日去：鹈鹕骑行动画画面">
+      <div class="card-body">
+        <h2>追着落日去</h2>
+        <p>追光的一版，画面更有运动感。适合想直接看动画循环效果的场景。</p>
+        <span class="tag">CHASE THE SUN</span>
+      </div>
+    </a>
+
+    <a class="card" href="pelican-bicycle-dusk.html">
+      <img class="thumb" src="pelican-bicycle-dusk-preview.png" alt="暮色骑行：黄昏海岸与灯塔光束">
+      <div class="card-body">
+        <h2>暮色骑行</h2>
+        <p>黄昏海岸，落日沉向海面，灯塔光束缓缓扫过，车灯亮起，路边还有萤火虫。</p>
+        <span class="tag">DUSK</span>
+      </div>
+    </a>
+  </div>
+
+  <footer>
+    <p>三个文件都可独立打开、离线使用，也可以直接嵌入其他页面（<code>&lt;iframe&gt;</code> 或复制 SVG 片段）。</p>
+    <p>本目录内另有 <code>*.png</code> 预览图，可作封面或分享图使用。</p>
+  </footer>
+</body>
+</html>
