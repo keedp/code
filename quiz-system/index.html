@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>答题系统</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ 首页 ============ -->
+<section id="screen-home" class="screen active">
+  <div class="home-wrap">
+    <header class="brand">
+      <h1>答题系统</h1>
+      <p class="sub" id="home-summary">正在读取题库…</p>
+    </header>
+
+    <div class="card">
+      <h2 class="card-title">开始答题</h2>
+      <div class="field">
+        <label for="input-name">你的名字（可留空）</label>
+        <input id="input-name" type="text" placeholder="不填就记为「匿名考生」" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="select-scope">出题范围</label>
+        <select id="select-scope"></select>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="input-count">抽题数量</label>
+          <input id="input-count" type="number" min="1" step="1" value="10">
+        </div>
+        <div class="field">
+          <label for="select-mode">答题模式</label>
+          <select id="select-mode">
+            <option value="practice">练习模式：每题答完立刻判对错</option>
+            <option value="exam">考试模式：全部答完再统一交卷</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>其它设置</label>
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="chk-shuffle-questions" checked> 打乱题目顺序</label>
+          <label class="check"><input type="checkbox" id="chk-shuffle-options"> 打乱选项顺序</label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="btn-start" class="btn btn-primary">开始答题</button>
+        <button id="btn-open-settings" class="btn btn-ghost">题库 / 数据</button>
+      </div>
+    </div>
+
+    <p class="hint">答题记录保存在本机浏览器里，换浏览器或清理浏览器数据会丢失。</p>
+  </div>
+</section>
+
+<!-- ============ 答题页 ============ -->
+<section id="screen-quiz" class="screen">
+  <header class="quiz-bar">
+    <div class="quiz-bar-left">
+      <span class="tag" id="quiz-mode-tag">练习</span>
+      <span class="quiz-group" id="quiz-group"></span>
+    </div>
+    <div class="quiz-bar-right">
+      <span class="elapsed" id="quiz-elapsed">00:00</span>
+      <span class="progress-text"><b id="progress-index">1</b> / <span id="progress-total">1</span></span>
+      <button id="btn-finish" class="btn btn-ghost btn-sm">交卷</button>
+      <button id="btn-quit" class="btn btn-ghost btn-sm">退出</button>
+    </div>
+  </header>
+
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+
+  <main class="quiz-main">
+    <div class="question-card" id="question-card">
+      <div class="q-head">
+        <span class="q-type" id="q-type">单选题</span>
+        <span class="q-score" id="q-score"></span>
+      </div>
+      <div class="q-stem" id="q-stem"></div>
+      <div class="q-options" id="q-options"></div>
+      <div class="q-actions" id="q-actions"></div>
+      <div class="q-feedback" id="q-feedback"></div>
+    </div>
+
+    <div class="quiz-nav">
+      <button id="btn-prev" class="btn btn-ghost">上一题</button>
+      <button id="btn-next" class="btn btn-primary">下一题</button>
+    </div>
+  </main>
+
+  <nav class="card-picker" id="card-picker" aria-label="题目导航"></nav>
+</section>
+
+<!-- ============ 成绩页 ============ -->
+<section id="screen-result" class="screen">
+  <div class="result-wrap">
+    <div class="card result-card">
+      <div class="score-ring" id="score-ring">
+        <div class="score-inner">
+          <span class="score-num" id="result-score">0</span>
+          <span class="score-unit">分</span>
+        </div>
+      </div>
+      <h2 class="result-title" id="result-title">答题结束</h2>
+      <p class="result-sub" id="result-sub"></p>
+
+      <div class="stats" id="result-stats"></div>
+
+      <div class="actions actions-center">
+        <button id="btn-retry-wrong" class="btn btn-primary">只练错题</button>
+        <button id="btn-restart" class="btn">再答一次</button>
+        <button id="btn-back-home" class="btn btn-ghost">返回首页</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title">答题明细</h2>
+      <div id="result-detail"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 题库 / 数据 ============ -->
+<section id="screen-settings" class="screen">
+  <div class="settings-wrap">
+    <header class="quiz-bar">
+      <div class="quiz-bar-left"><h2 class="settings-title">题库 / 数据</h2></div>
+      <div class="quiz-bar-right"><button id="btn-close-settings" class="btn btn-ghost btn-sm">返回首页</button></div>
+    </header>
+
+    <div class="card">
+      <h2 class="card-title">题库概况</h2>
+      <div class="stats" id="bank-stats"></div>
+      <p class="hint">
+        换题方法：把真题按 <code>questions.js</code> 里的格式整理好，替换该文件内容，刷新页面即可。
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title">题库校验</h2>
+      <p class="hint">检查答案字母是否越界、多选是否只有一个答案、判断题答案格式是否正确等。</p>
+      <div class="actions">
+        <button id="btn-validate" class="btn">运行校验</button>
+      </div>
+      <div id="validate-output" class="validate-output"></div>
+    </div>
+
+    <div class="card">
+      <h2 class="card-title">答题记录</h2>
+      <div class="actions">
+        <button id="btn-export" class="btn">导出记录（CSV）</button>
+        <button id="btn-clear-history" class="btn btn-danger">清空记录</button>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 交卷确认 -->
+<div class="modal-mask" id="modal-confirm" hidden>
+  <div class="modal">
+    <h3 id="modal-confirm-title">确认交卷？</h3>
+    <p id="modal-confirm-text"></p>
+    <div class="actions actions-right">
+      <button class="btn btn-ghost" data-modal-cancel>再想想</button>
+      <button class="btn btn-primary" id="btn-confirm-ok">确认</button>
+    </div>
+  </div>
+</div>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
